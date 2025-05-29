@@ -16,7 +16,7 @@ pipeline{
         }
         stage('Building And Pushing Docker Image To Registry'){
             steps{
-                withCredentials([file(credentialsId: 'gcp-key', var: 'GOOGLE_APPLICATION_CREDENTIALS')]){
+                withCredentials([file(credentialsId: 'gcp-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]){
                     echo 'Pushing To Artifact Registry'
                     sh '''
                     gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
@@ -30,7 +30,7 @@ pipeline{
         }
         stage('Deploy To Cloud Run'){
             steps{
-                withCredentials([file(credentialsId: 'gcp-key', var: 'GOOGLE_APPLCATION_CREDENTIALS')]){
+                withCredentials([file(credentialsId: 'gcp-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]){
                     echo 'Deploying Image To Cloud Run'
                     sh '''
                     gcloud run deploy --region ${LOCATION} --container ${CONTAINER}
