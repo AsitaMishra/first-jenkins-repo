@@ -12,7 +12,7 @@ pipeline{
         stage('Clone To Repository'){
             steps{
                 echo 'Cloning To Repository'
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'jenkins-git-token', url: 'https://github.com/AsitaMishra/jenkins-mlf.git']])
+                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'jenkins-git-token', url: 'https://github.com/AsitaMishra/first-jenkins-repo.git']])
             }
         }
         stage('Create Venv'){
